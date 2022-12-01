@@ -37,8 +37,8 @@ int main() {
     return -1;
 
   // Parse
-  int sum=0, max=0;
-  for(int c; c!=END_FILE; c=getCalorie(f)) {
+  int max=0;
+  for(int c=0, sum=0; c!=END_FILE; c=getCalorie(f)) {
       if(c) sum += c;
       else {
         max = (sum>max) ? sum : max;
