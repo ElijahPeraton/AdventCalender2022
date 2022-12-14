@@ -26,6 +26,18 @@ void Cargo::CargoShip::move(int from, int to) {
   load(to, c);
 }
 
+// Move multiple crates while preserving their original order (NOT inverting order)
+void Cargo::CargoShip::moveMultiple(int n, int from, int to) {
+  // Recursive
+  bool allUnloaded = n==0;
+  if(allUnloaded) return;
+
+  char c = unload(from);
+  // std::cout << "Unloading " << c << std::endl;
+  moveMultiple(--n, from, to);
+  // std::cout << "Loading " << c << std::endl;
+  load(to, c);
+}
 
 
 // Helper function

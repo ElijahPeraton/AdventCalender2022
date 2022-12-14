@@ -17,6 +17,7 @@ namespace Cargo {
     void load(int stackNumber, char crate);
     char unload(int stackNumber);
     void move(int from, int to);
+    void moveMultiple(int n, int from, int to);
     void show();
   private:
     // Array of Stacks
