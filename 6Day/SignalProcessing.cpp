@@ -27,9 +27,10 @@ int charToIndex(char c) {
 *   Char Memory
 *
 */
-CharMemory::CharMemory() :
-  curr(0),
-  record{INVALID_CHAR,INVALID_CHAR,INVALID_CHAR,INVALID_CHAR}{
+CharMemory::CharMemory(int memoryLength) : n(memoryLength), curr(0) {
+    // initialize records
+    record = new char[n];
+    for(int i=0; i<n; i++) record[i] = INVALID_CHAR;
 }
 
 char CharMemory::getOldest() {
@@ -42,7 +43,7 @@ void CharMemory::replaceOldest(char newChar) {
   // if curr pointer has wrapped around, record is full -> Ready for use
   record[curr] = newChar;
   curr += 1;
-  curr %= 4;
+  curr %= n;
 }
 
 bool CharMemory::isReady() {

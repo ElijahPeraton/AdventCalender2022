@@ -2,7 +2,7 @@
 #include <fstream>
 #include "SignalProcessing.hpp"
 
-#define INPUT_FILE_PATH "input/ex5.txt"
+#define INPUT_FILE_PATH "input/input.txt"
 
 int main() {
   // Open file
@@ -14,11 +14,13 @@ int main() {
     return -1;
   }
 
-  // Process through file one char at a time
-  SignalProcessing::CharMemory memory;
+  // Signal Processing Modules
+  int messageLength = 14;
+  SignalProcessing::CharMemory memory(messageLength);
   SignalProcessing::UniqueSequenceIdentifier identifier (memory);
 
 
+  // Process through file one char at a time
   char ch;
   int iter = 1;
   while(f >> ch) {
@@ -27,7 +29,9 @@ int main() {
     // See if unique sequence found
 
     std::cout << ch << std::endl;
+
     identifier.registerChar(ch);
+    
     bool mostRecentAreUnique = identifier.allUnique();
 
     if(mostRecentAreUnique) {

@@ -9,10 +9,11 @@ namespace SignalProcessing {
       Has a warm up time where one to all elements are invalid characters
     */
     class CharMemory {
-      char record[4];
+      char *record;
       int curr;       // Always points to oldest element
+      int n;
     public:
-      CharMemory();
+      CharMemory(int memoryLength);
       char getOldest();
       void replaceOldest(char newChar);
       bool isReady();
